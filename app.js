@@ -8,7 +8,8 @@ const path = require('path');
 const connectDB = require('./config/database');
 const User = require('./models/User');
 
-connectDB();
+console.log('MONGODB_URI set:', !!process.env.MONGODB_URI);
+console.log('JWT_SECRET set:', !!process.env.JWT_SECRET);
 
 const app = express();
 
@@ -24,6 +25,16 @@ app.use(express.json());
 app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(cookieParser());
+
+// Ensure DB is connected before handling any request
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+  } catch (e) {
+    console.error('DB connection error:', e.message);
+  }
+  next();
+});
 
 // JWT auth — set req.user if token is valid
 app.use(async (req, res, next) => {
