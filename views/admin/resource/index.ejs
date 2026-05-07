@@ -1,0 +1,51 @@
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center"><h3 class="text-primary">Dashboard</h3></div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active">Resources</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Resources</h4>
+            <%- include('../../../inc/messages') %>
+            <div class="clearfix" style="margin-bottom:10px;">
+              <a href="/resourceSection/create" class="btn btn-sm btn-success"><i class="fa fa-upload"></i> Upload File</a>
+            </div>
+            <table class="table table-hover table-striped table-bordered">
+              <thead>
+                <tr><th>Name</th><th>File</th><th>Description</th><th>Date</th><th>Action</th></tr>
+              </thead>
+              <tbody>
+                <% if (resources.length > 0) { %>
+                  <% resources.forEach(function(r) { %>
+                    <tr>
+                      <td><%= r.name %></td>
+                      <td><% if (r.file) { %><a href="<%= r.file %>" target="_blank">View File</a><% } %></td>
+                      <td><%= r.description %></td>
+                      <td><%= new Date(r.createdAt).toLocaleDateString('en-GB') %></td>
+                      <td>
+                        <a class="btn btn-info btn-rounded" href="/resourceSection/<%= r._id %>/edit"><i class="fa fa-edit"></i></a>
+                        <form method="POST" action="/resourceSection/<%= r._id %>?_method=DELETE" style="display:inline;" onsubmit="return confirm('Delete this file?')">
+                          <button type="submit" class="btn btn-danger btn-rounded"><i class="fa fa-trash"></i></button>
+                        </form>
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr><td colspan="5"><div class="alert alert-danger">No resources found!</div></td></tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center"><h3 class="text-primary">Dashboard</h3></div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item"><a href="/galleryImageSection">Gallery Images</a></li>
+        <li class="breadcrumb-item active">Upload Images</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Upload Gallery Images</h4>
+            <%- include('../../../inc/messages') %>
+            <form action="/galleryImageSection" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label>Select Gallery</label>
+                <select name="gallery_name" class="form-control" required>
+                  <option value="0">-- Select Gallery --</option>
+                  <% galleries.forEach(function(g) { %>
+                    <option value="<%= g._id %>"><%= g.name %></option>
+                  <% }) %>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>Images (multiple)</label>
+                <input class="form-control" name="gallery_image" type="file" accept="image/jpeg,image/png,image/jpg" multiple required>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <input type="text" name="description" class="form-control" placeholder="Optional description">
+              </div>
+              <hr>
+              <a href="/galleryImageSection" class="btn btn-danger">Back</a>
+              <button type="submit" class="btn btn-success">Upload</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

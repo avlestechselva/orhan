@@ -1,0 +1,68 @@
+<div class="footer">
+  <div class="container">
+    <div class="col-md-4 agile_footer_grid">
+      <h3>Contact Info</h3>
+      <ul class="w3_address">
+        <li><i class="glyphicon glyphicon-map-marker" aria-hidden="true"></i>557 High Road, Wembley <span>Middlesex,</span> <span>HA0 2DW United Kingdom.</span></li>
+        <li><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i><a href="mailto:info@orhan.org.uk">info@orhan.org.uk</a></li>
+        <li><i class="glyphicon glyphicon-earphone" aria-hidden="true"></i> 07831195979</li>
+      </ul>
+    </div>
+    <div class="col-md-4 agile_footer_grid">
+      <h3>About Us</h3>
+      <p>Considering the history of the district, Vavuniya is one of the affected districts, suffered much in the civil war in Sri Lanka.</p>
+      <ul class="agileits_social_list">
+        <li><a href="#" class="w3_agile_facebook"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+        <li><a href="#" class="agile_twitter"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+        <li><a href="#" class="w3_agile_dribble"><i class="fa fa-dribbble" aria-hidden="true"></i></a></li>
+      </ul>
+    </div>
+    <div class="col-md-4 agile_footer_grid">
+      <h3>Latest News</h3>
+      <ul class="agileits_w3layouts_footer_grid_list" id="footer-news-list">
+      </ul>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+</div>
+<div class="agileinfo_copyright">
+  <p>&copy; 2018 Orhan. All rights reserved | Developed by <a href="http://www.adameveandapple.co.uk/">AdamEve&amp;Apple</a></p>
+</div>
+<script type="text/javascript" src="/js/jquery-2.1.4.min.js"></script>
+<script src="/js/simpleLightbox.js"></script>
+<script>if(typeof $ !== 'undefined') $('.w3_agile_gallery_grid a').simpleLightbox();</script>
+<script src="/js/slick.js" type="text/javascript"></script>
+<script type="text/javascript">
+$(document).on('ready', function() {
+  $(".center").slick({
+    dots: true, infinite: true, centerMode: true, slidesToShow: 2, slidesToScroll: 2,
+    responsive: [
+      { breakpoint: 800, settings: { arrows: true, centerMode: false, slidesToShow: 1 } },
+      { breakpoint: 480, settings: { arrows: true, centerMode: false, centerPadding: '40px', slidesToShow: 1 } }
+    ]
+  });
+});
+</script>
+<script src="/js/bootstrap.js"></script>
+<script src="/js/owl.carousel.js"></script>
+<script>
+$(document).ready(function() {
+  $("#owl-demo").owlCarousel({ autoPlay: 3000, items: 3, itemsDesktop: [640,5], itemsDesktopSmall: [414,4] });
+});
+</script>
+<script type="text/javascript" src="/js/numscroller-1.0.js"></script>
+<script type="text/javascript" src="/js/move-top.js"></script>
+<script type="text/javascript" src="/js/easing.js"></script>
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+  $(".scroll").click(function(event) {
+    event.preventDefault();
+    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+  });
+});
+</script>
+<script type="text/javascript">
+$(document).ready(function() {
+  $().UItoTop({ easingType: 'easeOutQuart' });
+});
+</script>

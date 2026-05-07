@@ -1,0 +1,35 @@
+<div class="banner1"></div>
+<div class="grid_3 grid_2 agileinfo">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Resources</li>
+  </ol>
+</div>
+
+<div class="content two">
+  <div class="container">
+    <div class="head-section text-center">
+      <h2 class="w3l_header">Resources</h2>
+      <p class="quia">Downloadable documents</p>
+    </div>
+    <div class="row">
+      <% if (resources.length > 0) { %>
+        <% resources.forEach(function(r) { %>
+          <div class="col-md-6">
+            <div class="well">
+              <h4><i class="fa fa-file-text-o"></i> <%= r.name %></h4>
+              <% if (r.description) { %><p><%= r.description %></p><% } %>
+              <% if (r.file) { %>
+                <a href="<%= r.file %>" class="btn btn-primary btn-sm" target="_blank">
+                  <i class="fa fa-download"></i> Download
+                </a>
+              <% } %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No resources found</p>
+      <% } %>
+    </div>
+  </div>
+</div>

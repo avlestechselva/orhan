@@ -1,0 +1,31 @@
+<div class="banner1"></div>
+<div class="grid_3 grid_2 agileinfo">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="/News">News</a></li>
+    <li class="active"><%= news.title %></li>
+  </ol>
+</div>
+
+<div class="content">
+  <div class="container">
+    <div class="single">
+      <div class="head-section text-center">
+        <h2>ORHAN'S NEWS</h2>
+        <span></span>
+      </div>
+      <div class="single-top">
+        <img src="<%= news.cover_image %>" alt="<%= news.title %>"/>
+      </div>
+      <div class="top-single">
+        <h2><%= news.title %></h2>
+        <div class="grid-single">
+          <div class="single-one"><span><i class="fa fa-calendar"></i>&nbsp;&nbsp;<%= new Date(news.updatedAt).toLocaleDateString('en-GB', {day:'2-digit',month:'short',year:'numeric'}) %></span></div>
+          <div class="single-one"><span><i class="fa fa-clock"></i>&nbsp;&nbsp;<%= new Date(news.updatedAt).toLocaleTimeString('en-GB') %></span></div>
+          <div class="clearfix"></div>
+        </div>
+        <p class="eget"><%- news.body %></p>
+      </div>
+    </div>
+  </div>
+</div>

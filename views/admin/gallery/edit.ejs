@@ -1,0 +1,41 @@
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center"><h3 class="text-primary">Dashboard</h3></div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item"><a href="/gallerySection">Gallery</a></li>
+        <li class="breadcrumb-item active">Edit Gallery</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Edit Gallery</h4>
+            <%- include('../../../inc/messages') %>
+            <form action="/gallerySection/<%= gallery._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+              <div class="form-group">
+                <label>Gallery Name</label>
+                <input type="text" name="name" class="form-control" value="<%= gallery.name %>" required>
+              </div>
+              <div class="form-group">
+                <label>Current Cover Image</label><br>
+                <img style="width:100px;height:80px;" src="<%= gallery.cover_image %>" alt="<%= gallery.name %>">
+              </div>
+              <div class="form-group">
+                <label>Replace Cover Image</label>
+                <input class="form-control" name="gallery_cover_image" type="file" accept="image/jpeg,image/png,image/jpg">
+              </div>
+              <hr>
+              <a href="/gallerySection" class="btn btn-danger">Back</a>
+              <button type="submit" class="btn btn-success">Update</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

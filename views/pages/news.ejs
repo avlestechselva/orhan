@@ -1,0 +1,41 @@
+<div class="banner1"></div>
+<div class="grid_3 grid_2 agileinfo">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">News</li>
+  </ol>
+</div>
+
+<div class="content two">
+  <div class="container">
+    <div class="blog-posts-section">
+      <div class="head-section text-center">
+        <h2 class="w3l_header">News</h2>
+        <p class="quia">We provide through many different story from our organization</p>
+        <span></span>
+      </div>
+      <div class="blog-post-grids blog_grids">
+        <% if (news.length > 0) { %>
+          <% news.forEach(function(item) { %>
+            <div class="col-md-4 blog-posts">
+              <div class="blog-post">
+                <a href="/News/<%= encodeURIComponent(item.title) %>"><img src="<%= item.cover_image %>" alt="<%= item.title %>"></a>
+                <a href="/News/<%= encodeURIComponent(item.title) %>" class="blog-title"><%= item.title %></a>
+                <p class="sub_head">Posted by <a href=""><%= item.author %></a> on <%= new Date(item.updatedAt).toLocaleDateString('en-GB') %></p>
+                <p style="text-align:justify;"><%= item.description %></p>
+              </div>
+            </div>
+          <% }) %>
+        <% } else { %>
+          <p>No Results found</p>
+        <% } %>
+        <div class="clearfix"></div>
+      </div>
+      <div class="pagination text-center">
+        <% if (hasPrev) { %><a href="?page=<%= currentPage - 1 %>" class="btn btn-default">&laquo; Prev</a><% } %>
+        <span> Page <%= currentPage %> of <%= totalPages %> </span>
+        <% if (hasNext) { %><a href="?page=<%= currentPage + 1 %>" class="btn btn-default">Next &raquo;</a><% } %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center"><h3 class="text-primary">Dashboard</h3></div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active">News</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Orhan's News</h4>
+            <h6 class="card-subtitle">Share and publish your activities!</h6>
+            <%- include('../../../inc/messages') %>
+            <div class="table-responsive m-t-40">
+              <div class="clearfix">
+                <a href="/newsSection/create" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Create News</a>
+                <a href="/newsSection" class="btn btn-sm btn-warning"><i class="fa fa-refresh"></i> Reload</a>
+              </div>
+              <table class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">
+                <thead>
+                  <tr>
+                    <th>Image</th><th>Title</th><th>Author</th><th>Description</th><th>Date</th><th>Action</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% if (news.length > 0) { %>
+                    <% news.forEach(function(item) { %>
+                      <tr>
+                        <td><img style="width:100px;height:60px;" src="<%= item.cover_image %>" alt="<%= item.title %>"></td>
+                        <td><div class="truncate-ellipsis-title"><%= item.title %></div></td>
+                        <td><%= item.author %></td>
+                        <td><div class="truncate-ellipsis"><%= item.description %></div></td>
+                        <td><%= new Date(item.createdAt).toLocaleDateString('en-GB') %></td>
+                        <td>
+                          <a class="btn btn-success btn-rounded" target="_blank" href="/News/<%= encodeURIComponent(item.title) %>"><i class="fa fa-eye"></i></a>
+                          <a class="btn btn-info btn-rounded" href="/newsSection/<%= item._id %>/edit"><i class="fa fa-edit"></i></a>
+                          <form method="POST" action="/newsSection/<%= item._id %>?_method=DELETE" style="display:inline;" onsubmit="return confirm('Are you sure?')">
+                            <button type="submit" class="btn btn-danger btn-rounded"><i class="fa fa-trash"></i></button>
+                          </form>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } else { %>
+                    <tr><td colspan="6"><div class="alert alert-danger">No results found!</div></td></tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

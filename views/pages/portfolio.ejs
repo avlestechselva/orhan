@@ -1,0 +1,35 @@
+<div class="banner1"></div>
+<div class="grid_3 grid_2 agileinfo">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Portfolio</li>
+  </ol>
+</div>
+
+<div class="content two">
+  <div class="container">
+    <div class="head-section text-center">
+      <h2 class="w3l_header">Portfolio</h2>
+      <p class="quia">Our Gallery Collections</p>
+    </div>
+    <div class="row">
+      <% if (galleries.length > 0) { %>
+        <% galleries.forEach(function(gallery) { %>
+          <div class="col-md-4 col-sm-6 w3_agile_gallery_grid">
+            <a href="/Gallery/<%= encodeURIComponent(gallery.name) %>">
+              <img src="<%= gallery.cover_image %>" class="img-responsive" alt="<%= gallery.name %>">
+              <div class="gallery-overlay"><p><%= gallery.name %></p></div>
+            </a>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No galleries found</p>
+      <% } %>
+    </div>
+    <div class="pagination text-center">
+      <% if (hasPrev) { %><a href="?page=<%= currentPage - 1 %>" class="btn btn-default">&laquo; Prev</a><% } %>
+      <span> Page <%= currentPage %> of <%= totalPages %> </span>
+      <% if (hasNext) { %><a href="?page=<%= currentPage + 1 %>" class="btn btn-default">Next &raquo;</a><% } %>
+    </div>
+  </div>
+</div>

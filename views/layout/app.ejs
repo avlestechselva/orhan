@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title><%- typeof pagetitle !== 'undefined' ? pagetitle : 'ORHAN' %></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="language" content="en">
+  <meta name="robots" content="index,follow,all" />
+  <meta name="Author" content="ORHAN" />
+  <meta name="HandheldFriendly" content="True">
+  <%- typeof extraCss !== 'undefined' ? extraCss : '' %>
+  <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/css/style.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="/css/font-awesome.css" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+  <link href="//fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+  <link rel="stylesheet" href="/css/owl.carousel.css" type="text/css" media="all">
+  <link href="/css/owl.theme.css" rel="stylesheet">
+</head>
+<body data-spy="scroll" data-target=".inner-link" data-offset="60">
+<main>
+  <%- include('../inc/navbar') %>
+  <%- body %>
+  <%- include('../inc/footer') %>
+</main>
+</body>
+</html>

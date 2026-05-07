@@ -1,0 +1,35 @@
+<div class="banner1"></div>
+<div class="grid_3 grid_2 agileinfo">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li><a href="/Gallery">Gallery</a></li>
+    <li class="active"><%= gallery.name %></li>
+  </ol>
+</div>
+
+<div class="content two">
+  <div class="container">
+    <div class="head-section text-center">
+      <h2 class="w3l_header"><%= gallery.name %></h2>
+    </div>
+    <div class="row w3_agile_gallery_grid">
+      <% if (images.length > 0) { %>
+        <% images.forEach(function(img) { %>
+          <div class="col-md-4 col-sm-6">
+            <a href="<%= img.image %>" class="w3_agile_gallery_grid_img">
+              <img src="<%= img.image %>" class="img-responsive" alt="<%= img.description || '' %>">
+            </a>
+            <% if (img.description) { %><p class="text-center"><%= img.description %></p><% } %>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No images found in this gallery</p>
+      <% } %>
+    </div>
+    <div class="pagination text-center">
+      <% if (hasPrev) { %><a href="?page=<%= currentPage - 1 %>" class="btn btn-default">&laquo; Prev</a><% } %>
+      <span> Page <%= currentPage %> of <%= totalPages %> </span>
+      <% if (hasNext) { %><a href="?page=<%= currentPage + 1 %>" class="btn btn-default">Next &raquo;</a><% } %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center"><h3 class="text-primary">Dashboard</h3></div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active">Gallery Images</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Gallery Images</h4>
+            <%- include('../../../inc/messages') %>
+            <div class="clearfix" style="margin-bottom:10px;">
+              <a href="/galleryImageSection/create" class="btn btn-sm btn-success"><i class="fa fa-upload"></i> Upload Images</a>
+            </div>
+            <table class="table table-hover table-striped table-bordered">
+              <thead>
+                <tr><th>Image</th><th>Gallery</th><th>Description</th><th>Date</th><th>Action</th></tr>
+              </thead>
+              <tbody>
+                <% if (gallery_images.length > 0) { %>
+                  <% gallery_images.forEach(function(img) { %>
+                    <tr>
+                      <td><img style="width:80px;height:60px;" src="<%= img.image %>" alt=""></td>
+                      <td><%= img.gallery_id ? img.gallery_id.name : '' %></td>
+                      <td><%= img.description %></td>
+                      <td><%= new Date(img.createdAt).toLocaleDateString('en-GB') %></td>
+                      <td>
+                        <a class="btn btn-info btn-rounded" href="/galleryImageSection/<%= img._id %>/edit"><i class="fa fa-edit"></i></a>
+                        <form method="POST" action="/galleryImageSection/<%= img._id %>?_method=DELETE" style="display:inline;" onsubmit="return confirm('Remove this image?')">
+                          <button type="submit" class="btn btn-danger btn-rounded"><i class="fa fa-trash"></i></button>
+                        </form>
+                      </td>
+                    </tr>
+                  <% }) %>
+                <% } else { %>
+                  <tr><td colspan="5"><div class="alert alert-danger">No images found!</div></td></tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="page-wrapper">
+  <div class="row page-titles">
+    <div class="col-md-5 align-self-center"><h3 class="text-primary">Dashboard</h3></div>
+    <div class="col-md-7 align-self-center">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/dashboard">Home</a></li>
+        <li class="breadcrumb-item active">Galleries</li>
+      </ol>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Orhan Galleries</h4>
+            <%- include('../../../inc/messages') %>
+            <div class="table-responsive m-t-40">
+              <div class="clearfix">
+                <a href="/gallerySection/create" class="btn btn-sm btn-success"><i class="fa fa-plus-circle"></i> Create Gallery</a>
+              </div>
+              <table class="table table-hover table-striped table-bordered">
+                <thead>
+                  <tr><th>Cover</th><th>Name</th><th>Date</th><th>Action</th></tr>
+                </thead>
+                <tbody>
+                  <% if (galleries.length > 0) { %>
+                    <% galleries.forEach(function(g) { %>
+                      <tr>
+                        <td><img style="width:80px;height:60px;" src="<%= g.cover_image %>" alt="<%= g.name %>"></td>
+                        <td><%= g.name %></td>
+                        <td><%= new Date(g.createdAt).toLocaleDateString('en-GB') %></td>
+                        <td>
+                          <a class="btn btn-info btn-rounded" href="/gallerySection/<%= g._id %>/edit"><i class="fa fa-edit"></i></a>
+                          <form method="POST" action="/gallerySection/<%= g._id %>?_method=DELETE" style="display:inline;" onsubmit="return confirm('This will delete all gallery images. Continue?')">
+                            <button type="submit" class="btn btn-danger btn-rounded"><i class="fa fa-trash"></i></button>
+                          </form>
+                        </td>
+                      </tr>
+                    <% }) %>
+                  <% } else { %>
+                    <tr><td colspan="4"><div class="alert alert-danger">No results found!</div></td></tr>
+                  <% } %>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

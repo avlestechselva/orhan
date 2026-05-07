@@ -1,0 +1,35 @@
+<div class="banner1"></div>
+<div class="grid_3 grid_2 agileinfo">
+  <ol class="breadcrumb">
+    <li><a href="/">Home</a></li>
+    <li class="active">Videos</li>
+  </ol>
+</div>
+
+<div class="content two">
+  <div class="container">
+    <div class="head-section text-center">
+      <h2 class="w3l_header">Videos</h2>
+      <p class="quia">Watch our latest videos</p>
+    </div>
+    <div class="row">
+      <% if (videos.length > 0) { %>
+        <% videos.forEach(function(v) { %>
+          <div class="col-md-6 col-sm-12" style="margin-bottom:20px;">
+            <h4><%= v.title %></h4>
+            <div class="embed-responsive embed-responsive-16by9">
+              <%- v.url %>
+            </div>
+          </div>
+        <% }) %>
+      <% } else { %>
+        <p>No videos found</p>
+      <% } %>
+    </div>
+    <div class="pagination text-center">
+      <% if (hasPrev) { %><a href="?page=<%= currentPage - 1 %>" class="btn btn-default">&laquo; Prev</a><% } %>
+      <span> Page <%= currentPage %> of <%= totalPages %> </span>
+      <% if (hasNext) { %><a href="?page=<%= currentPage + 1 %>" class="btn btn-default">Next &raquo;</a><% } %>
+    </div>
+  </div>
+</div>
