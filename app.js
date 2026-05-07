@@ -61,6 +61,19 @@ app.use((req, res, next) => {
   next();
 });
 
+// Temporary debug — remove after confirming DB works
+const News = require('./models/News');
+const Gallery = require('./models/Gallery');
+app.get('/debug-db', async (req, res) => {
+  try {
+    const newsCount = await News.countDocuments();
+    const galleryCount = await Gallery.countDocuments();
+    res.json({ connected: true, newsCount, galleryCount });
+  } catch (e) {
+    res.json({ connected: false, error: e.message });
+  }
+});
+
 app.use('/', require('./routes/web'));
 
 if (require.main === module) {
