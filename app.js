@@ -8,8 +8,9 @@ const path = require('path');
 const connectDB = require('./config/database');
 const User = require('./models/User');
 
-console.log('MONGODB_URI set:', !!process.env.MONGODB_URI);
-console.log('JWT_SECRET set:', !!process.env.JWT_SECRET);
+const uri = process.env.MONGODB_URI || '';
+console.log('MONGODB_URI set:', !!uri);
+console.log('MONGODB_URI preview:', uri.replace(/:([^@]+)@/, ':***@'));
 
 const app = express();
 
@@ -30,10 +31,11 @@ app.use(cookieParser());
 app.use(async (req, res, next) => {
   try {
     await connectDB();
+    next();
   } catch (e) {
     console.error('DB connection error:', e.message);
+    res.status(503).send('Database connection failed: ' + e.message);
   }
-  next();
 });
 
 // JWT auth — set req.user if token is valid
