@@ -8,10 +8,6 @@ const path = require('path');
 const connectDB = require('./config/database');
 const User = require('./models/User');
 
-const uri = process.env.MONGODB_URI || '';
-console.log('MONGODB_URI set:', !!uri);
-console.log('MONGODB_URI preview:', uri.replace(/:([^@]+)@/, ':***@'));
-
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -59,19 +55,6 @@ app.use((req, res, next) => {
   res.locals.user = req.user || null;
   res.locals.charityLink = process.env.CHARITY_LINK || '#';
   next();
-});
-
-// Temporary debug — remove after confirming DB works
-const News = require('./models/News');
-const Gallery = require('./models/Gallery');
-app.get('/debug-db', async (req, res) => {
-  try {
-    const newsCount = await News.countDocuments();
-    const galleryCount = await Gallery.countDocuments();
-    res.json({ connected: true, newsCount, galleryCount });
-  } catch (e) {
-    res.json({ connected: false, error: e.message });
-  }
 });
 
 app.use('/', require('./routes/web'));

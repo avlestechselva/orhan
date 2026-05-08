@@ -11,19 +11,6 @@ const galleryImageController = require('../controllers/galleryImageController');
 const resourceController = require('../controllers/resourceController');
 const videoController = require('../controllers/videoController');
 
-// Temporary debug route — remove after confirming DB works
-const News = require('../models/News');
-const Gallery = require('../models/Gallery');
-router.get('/debug-db', async (req, res) => {
-  try {
-    const newsCount = await News.countDocuments();
-    const galleryCount = await Gallery.countDocuments();
-    res.json({ connected: true, newsCount, galleryCount });
-  } catch (e) {
-    res.json({ connected: false, error: e.message });
-  }
-});
-
 // Public routes
 router.get('/', pageController.index);
 router.get('/About', pageController.about);
