@@ -1,6 +1,15 @@
 const express = require('express');
 const router = express.Router();
+const { rateLimit } = require('express-rate-limit');
 const { ensureAuth, ensureGuest } = require('../middleware/auth');
+
+const loginLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: 'Too many login attempts. Please try again in 15 minutes.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
 
 const pageController = require('../controllers/pageController');
 const authController = require('../controllers/authController');
@@ -30,7 +39,7 @@ router.get('/Bank-Contact', pageController.bcontact);
 
 // Auth routes
 router.get('/orhan_admin', ensureGuest, authController.getLogin);
-router.post('/orhan_admin', authController.postLogin);
+router.post('/orhan_admin', loginLimiter, authController.postLogin);
 router.post('/logout', authController.logout);
 
 // Protected - Dashboard

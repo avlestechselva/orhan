@@ -5,10 +5,16 @@ const cookieParser = require('cookie-parser');
 const jwt = require('jsonwebtoken');
 const methodOverride = require('method-override');
 const path = require('path');
+const helmet = require('helmet');
+const { rateLimit } = require('express-rate-limit');
 const connectDB = require('./config/database');
 const User = require('./models/User');
 
 const app = express();
+
+app.use(helmet({
+  contentSecurityPolicy: false, // disabled so existing CDN scripts/styles keep working
+}));
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
